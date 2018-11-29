@@ -27,6 +27,8 @@ WorldWindow::WorldWindow(int x, int y, int width, int height, char *label)
 	x_at = 0.0f;
 	y_at = 0.0f;
 
+	riding = false;
+
 }
 
 
@@ -98,13 +100,17 @@ WorldWindow::draw(void)
 	// Set up the viewing transformation. The viewer is at a distance
 	// dist from (x_at, y_ay, 2.0) in the direction (theta, phi) defined
 	// by two angles. They are looking at (x_at, y_ay, 2.0) and z is up.
-	eye[0] = x_at + dist * cos(theta * M_PI / 180.0) * cos(phi * M_PI / 180.0);
-	eye[1] = y_at + dist * sin(theta * M_PI / 180.0) * cos(phi * M_PI / 180.0);
-	eye[2] = 2.0 + dist * sin(phi * M_PI / 180.0);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	gluLookAt(eye[0], eye[1], eye[2], x_at, y_at, 2.0, 0.0, 0.0, 1.0);
-
+	if (riding) {
+		traintrack.Ride();
+	}
+	else {
+		eye[0] = x_at + dist * cos(theta * M_PI / 180.0) * cos(phi * M_PI / 180.0);
+		eye[1] = y_at + dist * sin(theta * M_PI / 180.0) * cos(phi * M_PI / 180.0);
+		eye[2] = 2.0 + dist * sin(phi * M_PI / 180.0);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		gluLookAt(eye[0], eye[1], eye[2], x_at, y_at, 2.0, 0.0, 0.0, 1.0);
+	}
 	// Position the light source. This has to happen after the viewing
 	// transformation is set up, so that the light stays fixed in world
 	// space. This is a directional light - note the 0 in the w component.
@@ -114,8 +120,10 @@ WorldWindow::draw(void)
 	// Draw stuff. Everything.
 	ground.Draw();
 	traintrack.Draw();
+
 	glPushMatrix();
-	glTranslatef(6.5f, 0.0f, 7.0f);  // Move right and into the screen
+	glRotatef(90.0, 1.0, 0.0, 0.0);
+	//glTranslatef(18.5f, 0.0f, 14.0f);  // Move right and into the screen
 	building.Draw();
 	glPopMatrix();
 	glPushMatrix();
@@ -156,10 +164,11 @@ WorldWindow::draw(void)
 	glTranslatef(-4.0f, 0.0f, 9.0f);  // Move right and into the screen
 	building.DrawPyramid();
 	glPopMatrix();
-
+	/*
 	glPushMatrix();
 	building.DrawSphere();
 	glPopMatrix();
+	*/
 }
 
 
@@ -168,6 +177,7 @@ WorldWindow::Drag(float dt)
 {
 	int	    dx = x_down - x_last;
 	int     dy = y_down - y_last;
+	static bool riding = false; 
 
 	switch (button)
 	{
@@ -252,7 +262,20 @@ WorldWindow::handle(int event)
 	case FL_RELEASE:
 		button = -1;
 		return 1;
-	}
+	
+	case FL_KEYBOARD:
+		if (Fl::event_key() == 'q')
+			exit(0);
+	
+		if (Fl::event_key() == 'r')
+		{
+			riding = !riding;
+			redraw();
+			return 1;
+		}
+		return 0;
+}
+
 
 	// Pass any other event types on the superclass.
 	return Fl_Gl_Window::handle(event);

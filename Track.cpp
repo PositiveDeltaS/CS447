@@ -8,6 +8,7 @@
 #include "Track.h"
 #include <stdio.h>
 #include <FL/math.h>
+#include <GL/glu.h>
 
 
 // The control points for the track spline.
@@ -219,3 +220,35 @@ Track::Update(float dt)
 }
 
 
+void
+Track::Ride() {
+	double cameraPosn[3];
+	float trainPosn[3];
+	double cameraLookAt[3];
+	float   tangent[3];
+
+	// Figure out where the train is
+	track->Evaluate_Point(posn_on_track, trainPosn);
+
+	// ...and what it's orientation is
+	track->Evaluate_Derivative(posn_on_track, tangent);
+
+	// Put the camera at the right place
+	cameraPosn[0] = trainPosn[0];
+	cameraPosn[1] = trainPosn[1];
+	cameraPosn[2] = trainPosn[2] + 2.5;
+
+	// Look at the right place. (next point on track + up a little bit)
+	cameraLookAt[0] = trainPosn[0] + tangent[0];
+	cameraLookAt[1] = trainPosn[1] + tangent[1];
+	cameraLookAt[2] = trainPosn[2] + tangent[2];
+
+	// Update camera
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(cameraPosn[0], cameraPosn[1], cameraPosn[2],
+		cameraLookAt[0], cameraLookAt[1], cameraLookAt[2],
+		0.0, 0.0, 1.0);
+
+	return;
+}
