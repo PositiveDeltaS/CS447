@@ -11,11 +11,15 @@ class Buildings {
 private:
 	GLubyte display_list;
 	GLuint  texture_obj;
+	GLuint  texture_obj2;
+	GLuint  spheretex;
 
 
 public:
 	void Draw(void);
 	bool    Initialize(void);
+	void DrawPyramid(void);
+	void DrawSphere(void);
 };
 
 

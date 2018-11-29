@@ -114,7 +114,52 @@ WorldWindow::draw(void)
 	// Draw stuff. Everything.
 	ground.Draw();
 	traintrack.Draw();
+	glPushMatrix();
+	glTranslatef(6.5f, 0.0f, 7.0f);  // Move right and into the screen
 	building.Draw();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(1.5f, 0.0f, 7.0f);  // Move right and into the screen
+	building.Draw();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-1.5f, 0.0f, 7.0f);  // Move right and into the screen
+	building.Draw();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(4.0f, 0.0f, 7.0f);  // Move right and into the screen
+	building.Draw();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-4.0f, 0.0f, 7.0f);  // Move right and into the screen
+	building.Draw();
+	glPopMatrix();
+
+	//pyramids
+	glPushMatrix();
+	glTranslatef(6.5f, 0.0f, 9.0f);  // Move right and into the screen
+	building.DrawPyramid();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(1.5f, 0.0f, 9.0f);  // Move right and into the screen
+	building.DrawPyramid();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-1.5f, 0.0f, 9.0f);  // Move right and into the screen
+	building.DrawPyramid();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(4.0f, 0.0f, 9.0f);  // Move right and into the screen
+	building.DrawPyramid();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-4.0f, 0.0f, 9.0f);  // Move right and into the screen
+	building.DrawPyramid();
+	glPopMatrix();
+
+	glPushMatrix();
+	building.DrawSphere();
+	glPopMatrix();
 }
 
 
