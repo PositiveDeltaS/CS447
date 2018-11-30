@@ -144,10 +144,37 @@ WorldWindow::draw(void)
 	building.Draw();
 	glPopMatrix();
 
+	// flared creeper cheeks
+	glPushMatrix();
+	glTranslatef(18.5f, -1.0f, 16.0f);  // Move right and into the screen
+	glScalef(4.5f, 0.0f, 4.5f);
+	sphere.Draw();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(0.0f, 17.0f, 13.0f);  // Move right and into the screen
+	glScalef(4.5f, 0.0f, 4.5f);
+	sphere.Draw();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-15.5f, 18.0f, 25.0f);  // Move right and into the screen
+	glScalef(4.5f, 0.0f, 4.5f);
+	sphere.Draw();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(4.0f, -20.0f, 14.0f);  // Move right and into the screen
+	glScalef(4.5f, 0.0f, 4.5f);
+	sphere.Draw();
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(-13.0f, -12.0f, 3.0f);  // Move right and into the screen
+	glScalef(4.5f, 0.0f, 4.5f);
+	sphere.Draw();
+	glPopMatrix();
+
+
 	//pyramids
 	glPushMatrix();
 	glTranslatef(18.5f, 0.0f, 18.0f);  // Move right and into the screen
-
 	building.DrawPyramid();
 	glPopMatrix();
 	glPushMatrix();
@@ -167,11 +194,7 @@ WorldWindow::draw(void)
 	building.DrawPyramid();
 	glPopMatrix();
 	
-	glPushMatrix();
-	glTranslatef(18.5f, -1.0f, 16.0f);  // Move right and into the screen
-	glScalef(1.5f, 0.0f, 2.5f);
-	sphere.Draw();
-	glPopMatrix();
+
 	
 }
 
