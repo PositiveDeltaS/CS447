@@ -125,7 +125,7 @@ Buildings::Draw(void) {
 }
 
 void Buildings::DrawPyramid() {
-	//glRotatef(90.0, 1.0, 0.0, 0.0);
+	glRotatef(90.0, 1.0, 0.0, 0.0);
 	glColor3f(1.0, 1.0, 1.0);
 	glNormal3f(0.0, 0.0, 1.0);
 	glEnable(GL_TEXTURE_2D);
@@ -133,6 +133,7 @@ void Buildings::DrawPyramid() {
 
 	glBegin(GL_TRIANGLES);
 	//Triangle 1
+	
 
 	glTexCoord2f(1.0f, 0.0f); glVertex3f(0.0f, 5.0f, 0.0f);   //V0(red)
 	glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, -1.0f, 1.0f);   //V1(green)
@@ -152,6 +153,8 @@ void Buildings::DrawPyramid() {
 	glTexCoord2f(1.0f, 0.0f); glVertex3f(0.0f, 5.0f, 0.0f);   //V0(red)
 	glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);   //V4(blue)
 	glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, -1.0f, 1.0f);   //V1(green)
+
+
 	glEnd();
 
 	glDisable(GL_TEXTURE_2D);

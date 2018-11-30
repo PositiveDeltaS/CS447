@@ -122,46 +122,46 @@ WorldWindow::draw(void)
 	traintrack.Draw();
 
 	glPushMatrix();
-	glRotatef(90.0, 1.0, 0.0, 0.0);
-	//glTranslatef(18.5f, 0.0f, 14.0f);  // Move right and into the screen
+
+	glTranslatef(18.5f, 0.0f, 16.0f);  // Move right and into the screen
 	building.Draw();
 	glPopMatrix();
 	glPushMatrix();
-	glTranslatef(1.5f, 0.0f, 7.0f);  // Move right and into the screen
+	glTranslatef(0.0f, 17.0f, 13.0f);  // Move right and into the screen
 	building.Draw();
 	glPopMatrix();
 	glPushMatrix();
-	glTranslatef(-1.5f, 0.0f, 7.0f);  // Move right and into the screen
+	glTranslatef(-15.5f, 18.0f, 25.0f);  // Move right and into the screen
 	building.Draw();
 	glPopMatrix();
 	glPushMatrix();
-	glTranslatef(4.0f, 0.0f, 7.0f);  // Move right and into the screen
+	glTranslatef(4.0f, -20.0f, 14.0f);  // Move right and into the screen
 	building.Draw();
 	glPopMatrix();
 	glPushMatrix();
-	glTranslatef(-4.0f, 0.0f, 7.0f);  // Move right and into the screen
+	glTranslatef(-13.0f, -13.0f, 3.0f);  // Move right and into the screen
 	building.Draw();
 	glPopMatrix();
 
 	//pyramids
 	glPushMatrix();
-	glTranslatef(6.5f, 0.0f, 9.0f);  // Move right and into the screen
+	glTranslatef(18.5f, 0.0f, 18.0f);  // Move right and into the screen
 	building.DrawPyramid();
 	glPopMatrix();
 	glPushMatrix();
-	glTranslatef(1.5f, 0.0f, 9.0f);  // Move right and into the screen
+	glTranslatef(0.0f, 17.0f, 15.0f);  // Move right and into the screen
 	building.DrawPyramid();
 	glPopMatrix();
 	glPushMatrix();
-	glTranslatef(-1.5f, 0.0f, 9.0f);  // Move right and into the screen
+	glTranslatef(-15.5f, 18.0f, 27.0f);  // Move right and into the screen
 	building.DrawPyramid();
 	glPopMatrix();
 	glPushMatrix();
-	glTranslatef(4.0f, 0.0f, 9.0f);  // Move right and into the screen
+	glTranslatef(4.0f, -20.0f, 16.0f);  // Move right and into the screen
 	building.DrawPyramid();
 	glPopMatrix();
 	glPushMatrix();
-	glTranslatef(-4.0f, 0.0f, 9.0f);  // Move right and into the screen
+	glTranslatef(-13.0f, -13.0f, 5.0f);  // Move right and into the screen
 	building.DrawPyramid();
 	glPopMatrix();
 	/*
