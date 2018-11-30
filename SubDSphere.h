@@ -7,8 +7,13 @@
 #ifndef _SUBDSPHERE_H_
 #define _SUBDSPHERE_H_
 
+#include <FL/glu.H>
+#include <GL/glut.h>
+#include <FL/math.H>
+#include "libtarga.h"
 #include <stdio.h>
 #include <math.h>
+
 
 typedef struct _Vertex {
     float   	    x[3];
@@ -36,6 +41,8 @@ private:
 	Edge    	    *edges;
 	unsigned int    num_faces;
 	Triangle	    *faces;
+
+	GLuint  texture_obj;
 
 public:
 	~SubDSphere(void);

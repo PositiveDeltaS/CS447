@@ -12,7 +12,33 @@
 
 bool
 SubDSphere::Initialize(void)
+
 {
+	
+	ubyte   *image_data;
+	int	    image_height, image_width;
+
+	// Load the image for the texture. The texture file has to be in
+	// a place where it will be found.
+	if (!(image_data = (ubyte*)tga_load("minecraft.tga", &image_width, &image_height, TGA_TRUECOLOR_24)))
+	{
+		fprintf(stderr, "Buildings::Initialize: Couldn't load minecraft.tga\n");
+		return false;
+	}
+	glGenTextures(1, &texture_obj);
+	glBindTexture(GL_TEXTURE_2D, texture_obj);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image_width, image_height, 0, GL_RGB,
+		GL_UNSIGNED_BYTE, image_data);
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	gluBuild2DMipmaps(GL_TEXTURE_2D, 3, image_width, image_height, GL_RGB, GL_UNSIGNED_BYTE, image_data);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+	free(image_data);
+	
 	num_vertices = 6;
 	num_edges = 12;
 	num_faces = 8;
@@ -251,8 +277,11 @@ SubDSphere::Draw(const bool smooth)
 	double  	    l;
 	unsigned int    i, j;
 
-	glTranslatef(5.5f, 5.0f, 1.0f);
 
+	glColor3f(1.0, 1.0, 1.0);
+	glNormal3f(0.0, 0.0, 1.0);
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture_obj);
 	glBegin(GL_TRIANGLES);
 	for (i = 0; i < num_faces; i++)
 	{
@@ -299,4 +328,5 @@ SubDSphere::Draw(const bool smooth)
 		}
 	}
 	glEnd();
+	glDisable(GL_TEXTURE_2D);
 }

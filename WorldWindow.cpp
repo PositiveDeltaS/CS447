@@ -13,6 +13,7 @@
 #include <GL/glu.h>
 #include <stdio.h>
 
+
 const double WorldWindow::FOV_X = 45.0;
 
 WorldWindow::WorldWindow(int x, int y, int width, int height, char *label)
@@ -28,7 +29,7 @@ WorldWindow::WorldWindow(int x, int y, int width, int height, char *label)
 	y_at = 0.0f;
 
 	riding = false;
-
+	smooth = false;
 }
 
 
@@ -89,6 +90,7 @@ WorldWindow::draw(void)
 		ground.Initialize();
 		traintrack.Initialize();
 		building.Initialize();
+		sphere.Initialize();
 	}
 
 	// Stuff out here relies on a coordinate system or must be done on every
@@ -122,7 +124,6 @@ WorldWindow::draw(void)
 	traintrack.Draw();
 
 	glPushMatrix();
-
 	glTranslatef(18.5f, 0.0f, 16.0f);  // Move right and into the screen
 	building.Draw();
 	glPopMatrix();
@@ -146,6 +147,7 @@ WorldWindow::draw(void)
 	//pyramids
 	glPushMatrix();
 	glTranslatef(18.5f, 0.0f, 18.0f);  // Move right and into the screen
+
 	building.DrawPyramid();
 	glPopMatrix();
 	glPushMatrix();
@@ -164,11 +166,13 @@ WorldWindow::draw(void)
 	glTranslatef(-13.0f, -13.0f, 5.0f);  // Move right and into the screen
 	building.DrawPyramid();
 	glPopMatrix();
-	/*
+	
 	glPushMatrix();
-	building.DrawSphere();
+	glTranslatef(18.5f, -1.0f, 16.0f);  // Move right and into the screen
+	glScalef(1.5f, 0.0f, 2.5f);
+	sphere.Draw();
 	glPopMatrix();
-	*/
+	
 }
 
 
@@ -270,6 +274,18 @@ WorldWindow::handle(int event)
 		if (Fl::event_key() == 'r')
 		{
 			riding = !riding;
+			redraw();
+			return 1;
+		}
+		if (Fl::event_key() == 's')
+		{
+			sphere.Subdivide(1);
+			redraw();
+			return 1;
+		}
+		if (Fl::event_key() == 'n')
+		{
+		    smooth = !smooth;
 			redraw();
 			return 1;
 		}

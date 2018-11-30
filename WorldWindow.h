@@ -40,7 +40,9 @@ class WorldWindow : public Fl_Gl_Window {
 	Ground	    ground;	    // The ground object.
 	Track  traintrack;	    // The train and track.
 	Buildings    building;
+	SubDSphere   sphere;
 	bool riding;
+	bool smooth;
 	static const double FOV_X; // The horizontal field of view.
 
 	float	phi;	// Viewer's inclination angle.
